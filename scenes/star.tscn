@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://s.gd" type="Script" id=1]
+[ext_resource path="res://celestial_body.gd" type="Script" id=1]
+[ext_resource path="res://camera movement.gd" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
-radius = 10.0
+radius = 696.0
 
 [sub_resource type="FixedMaterial" id=2]
 
@@ -59,7 +60,7 @@ glow/enabled = true
 glow/blur_passes = 2
 glow/blur_scale = 2.0
 glow/blur_strength = 1.0
-glow/blur_blend_mode = 0
+glow/blur_blend_mode = 1
 glow/bloom = 1.0
 glow/bloom_treshold = 0.5
 dof_blur/enabled = false
@@ -89,15 +90,15 @@ srgb/enabled = false
 
 [sub_resource type="SphereShape" id=4]
 
-radius = 100.0
+radius = 6960.0
 
 [node name="star" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script/script = ExtResource( 1 )
-lats = 20
-lons = 20
-radius = 10.0
+lats = 10
+lons = 10
+radius = 1
 add_uv = true
 
 [node name="rb" type="RigidBody" parent="."]
@@ -144,7 +145,7 @@ geometry/material_override = SubResource( 2 )
 geometry/cast_shadow = 0
 geometry/receive_shadows = false
 geometry/range_begin = 0.0
-geometry/range_end = 0.0
+geometry/range_end = 32768.0
 geometry/extra_cull_margin = 0.0
 geometry/billboard = false
 geometry/billboard_y = false
@@ -207,5 +208,21 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
+
+[node name="planetaryCamera" type="Camera" parent="rb"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+projection = 0
+fov = 60.0
+near = 0.1
+far = 4096.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+script/script = ExtResource( 2 )
 
 

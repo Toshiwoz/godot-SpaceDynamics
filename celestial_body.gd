@@ -5,9 +5,12 @@ export(int) var lats = 10 setget lats_set,lats_get
 export(int) var lons = 10 setget lons_set,lons_get
 export(float) var radius = 1 setget radius_set,radius_get
 export(bool) var add_uv = true setget add_uv_set,add_uv_get
-var sphere
-var collShape
-var gravityArea
+onready var sphere = get_node("rb/sp")
+onready var collShape = get_node("rb/coll")
+onready var gravityArea = get_node("rb/Area/gravityArea")
+onready var camera = get_camera()
+
+signal signal_camera_ready(planet_camera)
 
 func lats_set(newvalue):
 	lats=newvalue
@@ -38,11 +41,9 @@ func add_uv_get():
 	return add_uv # getter must return a value
 
 func _ready():
-	sphere = get_node("rb/sp")
-	collShape = get_node("rb/coll")
-	gravityArea = get_node("rb/Area/gravityArea")
 	redraw_geometry(lats, lons, radius, add_uv)
-	
+	self.add_to_group("celestial_body")
+
 func redraw_geometry(vlats, vlons, vradius, vadd_uv):
 	if (sphere != null):
 		sphere.clear()
@@ -53,7 +54,8 @@ func redraw_geometry(vlats, vlons, vradius, vadd_uv):
 			collShape.get_shape().set_radius(vradius)
 		if(gravityArea != null):
 			gravityArea.get_shape().set_radius(vradius * 10)
+		get_node("rb/planetaryCamera").set_translation(Vector3(0, 0, radius * 3))
 			
 func get_camera():
-	return get_node("planetaryCamera")
+	return get_node("rb/planetaryCamera")
 	

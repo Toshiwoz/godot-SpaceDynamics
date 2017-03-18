@@ -4,7 +4,7 @@ extends Camera
 var yaw = 0
 var pitch = 0
 var view_sensitivity = .3
-var accel = .3
+var accel = .1
 var speed = 0
 var middlebutton_pressed = false
 var dir = "n"
@@ -26,22 +26,14 @@ func _input(event):
 		middlebutton_pressed = event.button_index == 3 && event.pressed
 	elif event.is_action_pressed("ui_focus_next"):
 		var navcam = self
-		var earthcam = get_parent().get_node("earth/rb/planetaryCamera")
-		var mooncam = get_parent().get_node("moon/rb/planetaryCamera")
-		if navcam.is_current():
-			earthcam.make_current()
-		elif earthcam.is_current():
-			mooncam.make_current()
-		else:
-			navcam.make_current()
-
+		
 func _fixed_process(delta):
 	var vp = self.get_viewport()
 	var curr_pos = get_translation()
 	var proy_dir = project_ray_normal(vp.get_rect().size / 2)
 	speed += accel;
 	var nr_speed = proy_dir.normalized()
-	if (speed) < 1000 : 
+	if (speed) < 100 : 
 		nr_speed = (proy_dir.normalized() * speed)
 	
 	if Input.is_action_pressed("move_up"):

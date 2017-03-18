@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://s.gd" type="Script" id=1]
+[ext_resource path="res://celestial_body.gd" type="Script" id=1]
 [ext_resource path="res://textures/tc-earth_daymap_surface.jpg" type="Texture" id=2]
-[ext_resource path="res://orbit.gd" type="Script" id=3]
+[ext_resource path="res://camera movement.gd" type="Script" id=3]
+[ext_resource path="res://orbit.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -108,7 +109,23 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="orbit" type="ImmediateGeometry" parent="rb"]
+[node name="planetaryCamera" type="Camera" parent="rb"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
+projection = 0
+fov = 60.0
+near = 0.1
+far = 4096.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+script/script = ExtResource( 3 )
+
+[node name="orbit" type="ImmediateGeometry" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
@@ -125,21 +142,6 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-script/script = ExtResource( 3 )
-
-[node name="planetaryCamera" type="Camera" parent="rb"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.14828 )
-projection = 0
-fov = 60.0
-near = 0.1
-far = 100.0
-keep_aspect = 1
-current = false
-visible_layers = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
+script/script = ExtResource( 4 )
 
 

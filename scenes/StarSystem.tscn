@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://StarSystem.gd" type="Script" id=1]
 [ext_resource path="res://camera movement.gd" type="Script" id=2]
 [ext_resource path="res://scenes/star.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/planet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/moon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://navgui.gd" type="Script" id=6]
 
 [node name="StarSystem" type="Spatial"]
 
@@ -29,16 +30,33 @@ script/script = ExtResource( 2 )
 
 [node name="Star" parent="." instance=ExtResource( 3 )]
 
+lats = 100
+lons = 100
 radius = 696.0
 
-[node name="earth" parent="." instance=ExtResource( 4 )]
+[node name="earth" parent="Star" instance=ExtResource( 4 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0 )
 radius = 6.371
 
-[node name="moon" parent="." instance=ExtResource( 5 )]
+[node name="moon" parent="Star" instance=ExtResource( 5 )]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 0 )
 radius = 1.737
+
+[node name="NavTree" type="Tree" parent="."]
+
+visibility/opacity = 0.5
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 817.0
+margin/top = 14.0
+margin/right = 1008.0
+margin/bottom = 260.0
+script/script = ExtResource( 6 )
+
+[connection signal="item_selected" from="NavTree" to="NavTree" method="_on_Tree_item_selected"]
 
 

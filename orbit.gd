@@ -2,9 +2,12 @@ extends ImmediateGeometry
 
 func _ready():
 	self.clear()
+	set_fixed_process(true)
 	
 func _fixed_process(delta):
-#	self.begin(VS.PRIMITIVE_TRIANGLES,null)
-#	self.add_vertex(get_tree().get_root().get_node()
-#	self.end()
+	var tr = get_node("../rb").get_translation()
+	print(tr.x, " - ", tr.y, " - ", tr.z)
+	self.begin(VS.PRIMITIVE_LINE_LOOP,null)
+	self.add_vertex(tr)
+	self.end()
 	
