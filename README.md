@@ -7,7 +7,10 @@ For orbits representation I'll be using AU (149.597.870.700 meters) as measureme
 
 Todos:
 
-- [x] implement a GUI to list all the orbiting objects (included type)
+- [x] implement Navigation GUI
+  - [x] Object Name
+  - [] Object Type
+  - [] Target position indicator
 - [ ] implement orbits algorythm
 - [ ] plot orbit path
 - [x] implement orbital camera
