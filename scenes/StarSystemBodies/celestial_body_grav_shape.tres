@@ -1,0 +1,6 @@
+[gd_resource type="SphereShape" format=1]
+
+[resource]
+
+radius = 30.0
+

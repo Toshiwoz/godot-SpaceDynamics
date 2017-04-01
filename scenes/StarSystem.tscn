@@ -1,48 +1,24 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://StarSystem.gd" type="Script" id=1]
-[ext_resource path="res://camera movement.gd" type="Script" id=2]
-[ext_resource path="res://scenes/star.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/planet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/moon.tscn" type="PackedScene" id=5]
-[ext_resource path="res://navgui.gd" type="Script" id=6]
+[ext_resource path="res://scripts/StarSystem.gd" type="Script" id=1]
+[ext_resource path="res://scenes/StarSystemBodies/EnvironmentSpace.tres" type="Environment" id=2]
+[ext_resource path="res://scripts/navgui.gd" type="Script" id=3]
 
 [node name="StarSystem" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script/script = ExtResource( 1 )
+num_planets = 3
+star_size_factor = 1.0
 
-[node name="Camera" type="Camera" parent="."]
+[node name="ss" type="Spatial" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2001, 0 )
-projection = 0
-fov = 30.9375
-near = 0.1
-far = 4096.0
-keep_aspect = 1
-current = true
-visible_layers = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-script/script = ExtResource( 2 )
 
-[node name="Star" parent="." instance=ExtResource( 3 )]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
-lats = 100
-lons = 100
-radius = 696.0
-
-[node name="earth" parent="Star" instance=ExtResource( 4 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0 )
-radius = 6.371
-
-[node name="moon" parent="Star" instance=ExtResource( 5 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1200, 0, 0 )
-radius = 1.737
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = ExtResource( 2 )
 
 [node name="NavTree" type="Tree" parent="."]
 
@@ -55,7 +31,9 @@ margin/left = 817.0
 margin/top = 14.0
 margin/right = 1008.0
 margin/bottom = 260.0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 3 )
+
+[connection signal="all_nodes_created" from="." to="NavTree" method="_on_StarSystem_all_nodes_created"]
 
 [connection signal="item_selected" from="NavTree" to="NavTree" method="_on_Tree_item_selected"]
 

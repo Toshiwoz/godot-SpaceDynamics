@@ -58,4 +58,3 @@ func redraw_geometry(vlats, vlons, vradius, vadd_uv):
 			
 func get_camera():
 	return get_node("rb/planetaryCamera")
-	
