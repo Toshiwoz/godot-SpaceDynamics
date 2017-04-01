@@ -9,8 +9,8 @@ Todos:
 
 - [x] implement Navigation GUI
   - [x] Object Name
-  - [] Object Type
-  - [] Target position indicator
+  - [ ] Object Type
+  - [ ] Target position indicator
 - [ ] implement orbits algorythm
 - [ ] plot orbit path
 - [x] implement orbital camera
