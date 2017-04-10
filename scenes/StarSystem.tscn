@@ -8,7 +8,7 @@
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script/script = ExtResource( 1 )
-num_planets = 3
+num_planets = 2
 star_size_factor = 1.0
 
 [node name="ss" type="Spatial" parent="."]

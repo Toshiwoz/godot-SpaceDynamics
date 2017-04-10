@@ -30,6 +30,7 @@ func gen_star_system(parent, num_planets, star_size_factor):
 		sun.set_name("Sun")
 		sun.is_star_set(true)
 		sun.radius = 10 * star_size_factor
+		sun.star_color_by_agesize(star_size_factor)
 		parent.add_child(sun)
 		
 		#generate the planets
@@ -37,8 +38,8 @@ func gen_star_system(parent, num_planets, star_size_factor):
 		for i in range(1, num_planets + 1):
 			var planet = create_child_Body(sun, 1, body_distance, "Panet" + str(i))
 			body_distance = planet.get_translation().x
-			var moon = create_child_Body(planet, .25, body_distance, "Moon" + str(i))
-			body_distance = moon.get_translation().x
+			var moon = create_child_Body(planet, .25, 0, "Moon" + str(i))
+#			body_distance = moon.get_translation().x
 			
 		print(star_system_seed)
 		
@@ -49,12 +50,10 @@ func gen_star_system(parent, num_planets, star_size_factor):
 		emit_signal("all_nodes_created")
 
 func create_child_Body(parent_body, base_radius, accum_distance, name):
-	var body_rand_fact= (randf() / 2) + .5
+	var body_rand_fact = (randf() / 2) + .5
+	var body_distance_rand_fact = (randf() / 2) + .5
 	var body_radius = base_radius * body_rand_fact
-	var complexity = 20
-	if body_radius > 1:
-		complexity = 20 * body_radius
-	var body_distance = accum_distance + parent_body.radius + (5 * body_radius)
+	var body_distance = accum_distance + parent_body.radius + (body_distance_rand_fact * 10 * body_radius)
 	var child_body = CelestialBody.instance()
 	child_body.set_name(name)
 	child_body.radius = body_radius

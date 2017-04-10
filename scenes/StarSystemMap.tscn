@@ -1,7 +1,28 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scripts/orbital_utilities.gd" type="Script" id=1]
 
 [node name="StarSystemMap" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+ea = 0
+eccentricity = 0.0167
+mean_radius = 100.464
+true_anom = 100.464
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 384.0
+margin/top = 224.0
+margin/right = 424.0
+margin/bottom = 238.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

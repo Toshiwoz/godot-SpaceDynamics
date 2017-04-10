@@ -88,10 +88,23 @@ func get_body_data():
 	print(" gravity radius is " + str(gravityArea.get_shape(0).get_radius()))#gravityShape.get_shape().get_radius()))
 	pass
 	
-func isShapeInParent(inShape2Check):
-   var parentShapeCount = get_parent().get_count();
-   for idx in range(parentShapeCount):
-      var currentShape = get_parent().get_shape(idx);
-      if(currentShape==inShape2Check):
-         return true;
-   return false;
+func star_color_by_agesize(size, age = 0):
+	var yellow = Color("c7b245")
+	var red = Color("c70000")
+	var blue = Color("4b54a3")
+	var star_colors = ColorArray([0, 1, 2])
+	star_colors.insert(0, blue)
+	star_colors.insert(1, yellow)
+	star_colors.insert(2, red)
+	
+	var scale = round(size)
+	var dif = size - scale
+	star_emit_color = star_colors[scale]
+	
+	if(dif < 0):
+		star_emit_color = star_emit_color.linear_interpolate(star_colors[scale - 1], abs(dif))
+	else:
+		star_emit_color = star_emit_color.linear_interpolate(star_colors[scale + 1], abs(dif))
+	
+	
+	pass
