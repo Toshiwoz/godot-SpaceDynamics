@@ -40,9 +40,11 @@ func _ready():
 
 func redraw_geometry():
 	if (sphere != null):
-		var complexity = 20
-		if self.radius > 1:
-			complexity = 20 * self.radius
+		var complexity = 15
+		if self.radius > 1 && self.radius <= 10:
+			complexity = 10 * self.radius
+		elif self.radius > 10:
+			complexity = 100
 		sphere.clear()
 		sphere.begin(VS.PRIMITIVE_TRIANGLE_STRIP,null)
 		sphere.add_sphere(complexity, complexity, self.radius, 1)

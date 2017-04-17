@@ -1,6 +1,8 @@
 extends Tree
 
 var startree
+var treesize
+onready var treesizeprev = self.get_size()
 
 func _ready():
 #	var tree = self
@@ -35,3 +37,14 @@ func _on_StarSystem_all_nodes_created():
 	for body in startree:
 		var staritem = tree.create_item(root)
 		staritem.set_text(0, body.get_name())
+
+
+func _on_Button_pressed():
+	var treesize = self.get_size()
+	var newsize
+	var buttonsize = get_node("Button").get_size()
+	if treesize.y == buttonsize.y:
+		newsize = treesizeprev
+	else:
+		newsize = Vector2(treesize.x, buttonsize.y)
+	self.set_size(newsize)

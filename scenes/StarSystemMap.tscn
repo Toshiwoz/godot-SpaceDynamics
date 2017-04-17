@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://scripts/orbital_utilities.gd" type="Script" id=1]
+[ext_resource path="res://scenes/StarSystemMap.gd" type="Script" id=1]
 
 [node name="StarSystemMap" type="Spatial"]
 

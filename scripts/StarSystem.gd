@@ -3,7 +3,7 @@ extends Spatial
 
 var CelestialBody = preload("res://scenes/StarSystemBodies/celestial_body.tscn")
 export(int) var num_planets = 5 setget num_planets_set
-export(float) var star_size_factor = 1 setget star_size_factor_set
+export(float,0.1,3,0.05) var star_size_factor = 1 setget star_size_factor_set
 var star_system_seed = ""
 
 func num_planets_set(newval):
@@ -43,10 +43,6 @@ func gen_star_system(parent, num_planets, star_size_factor):
 			
 		print(star_system_seed)
 		
-#		var we = WorldEnvironment.new()
-#		var env = load("res://scenes/StarSystemBodies/EnvironmentSpace.tres")
-#		we.set_environment(env)
-#		self.add_child(we)
 		emit_signal("all_nodes_created")
 
 func create_child_Body(parent_body, base_radius, accum_distance, name):

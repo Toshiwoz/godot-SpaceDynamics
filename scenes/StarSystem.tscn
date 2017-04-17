@@ -8,8 +8,8 @@
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script/script = ExtResource( 1 )
-num_planets = 2
-star_size_factor = 1.0
+num_planets = 5
+star_size_factor = 2.9
 
 [node name="ss" type="Spatial" parent="."]
 
@@ -23,18 +23,42 @@ environment = ExtResource( 2 )
 [node name="NavTree" type="Tree" parent="."]
 
 visibility/opacity = 0.5
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 817.0
+margin/left = 207.0
 margin/top = 14.0
-margin/right = 1008.0
-margin/bottom = 260.0
+margin/right = 16.0
+margin/bottom = 16.0
 script/script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="NavTree"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 550.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "-"
+flat = false
 
 [connection signal="all_nodes_created" from="." to="NavTree" method="_on_StarSystem_all_nodes_created"]
 
 [connection signal="item_selected" from="NavTree" to="NavTree" method="_on_Tree_item_selected"]
+
+[connection signal="pressed" from="NavTree/Button" to="NavTree" method="_on_Button_pressed"]
 
 
